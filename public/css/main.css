@@ -1,0 +1,14 @@
+body {
+    background-color: #fff;
+}
+
+* {
+    font-family: 'Poppins';
+    text-decoration: none;
+}
+
+/**** MAIN BODY CONTENT PADDING ****/
+.body-content {
+    padding-left: 220px;
+    padding-top: 70px;
+}

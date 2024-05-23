@@ -1,0 +1,145 @@
+body {
+    background-color: #21565D;
+    font-family: 'Poppins';
+}
+
+.content {
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding-left: 65px;
+    padding-top: 10px;
+    margin-left: 850px;
+    margin-top: 105px;
+    height: 500px;
+    width: 430px;
+}
+
+.container h1 {
+    padding-top: 33px;
+    font-size: 30px;
+    text-align: left;
+}
+
+.container h2 {
+    font-size: 17px;
+    font-weight: 300;
+    text-align: left;
+    margin-top: -25px;
+}
+
+/************************* LOGIN FORM FIELD *******************************/ 
+
+.email input {
+    font-family: poppins;
+    position: absolute;
+    width: 21%;
+    height: 23px;
+    outline: none;
+    font-size: 16px;
+    padding: 0 18px;
+    margin-top: 45px;
+    height: 52px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background: #ffffff;
+    transition: 0.1s ease;
+} 
+
+.labelline {
+    position: absolute;
+    font-size: 16px;
+    color: #000000;
+    padding: 0 10px;
+    margin-top: 33px;
+    margin-left: 12px;
+    background-color: #ffffff;
+    transition: 0.2s ease;
+}
+
+.email input:focus, 
+.email input:valid {
+    color: #000;
+    border: 2px solid #21565D;
+}
+
+.email input:focus + .labelline, 
+.email input:valid + .labelline {
+    color: #21565D;
+    
+}
+
+.password input {
+    font-family: poppins;
+    position: absolute;
+    width: 21%;
+    height: 23px;
+    outline: none;
+    font-size: 16px;
+    padding: 0 18px;
+    margin-top: 135px;
+    height: 52px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background: #ffffff;
+    transition: 0.1s ease;
+} 
+
+.labelline_1 {
+    position: absolute;
+    font-size: 16px;
+    color: #000000;
+    padding: 0 10px;
+    margin-top: 125px;
+    margin-left: 12px;
+    background-color: #ffffff;
+    transition: 0.2s ease;
+}
+
+.password input:focus, 
+.password input:valid {
+    color: #000;
+    border: 2px solid #21565D;
+}
+
+.password input:focus + .labelline_1, 
+.password input:valid + .labelline_1 {
+    color: #21565D;
+    
+}
+
+/********************************* SUBMIT BUTTON ****************************************/
+
+.container .login-btn button {
+    font-size: 17px;
+    text-align: center;
+    font-weight: 500;
+    color: #ffffff;
+    text-transform: uppercase;
+    border: none;
+    text-decoration: none;
+    background-color: #21565D;
+    margin-top: 240px;
+    padding: 20px;
+    height: 60px;
+    width: 360px;
+    border-radius: 5px;
+}
+
+
+
+/* .container .login-btn:hover {
+    box-shadow: 0px 8px 15px -10px rgb(125, 125, 125);
+    transform: translate(0px, -2px);
+    background: #21565D;
+    margin-top: 240px;
+    cursor: pointer;
+    text-decoration: none;
+} */
+
+
+.logo {
+    margin-left: 170px;
+    margin-top: -500px;
+}
+
+
