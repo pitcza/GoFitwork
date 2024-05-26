@@ -49,13 +49,13 @@
                                                 @csrf
                                                 <button type="submit" class="buttons">A</button>
                                             </form>
-                                            <button type="button" class="buttons"> <a href="{{ route('admin.enquiry.edit', $enquiry->id) }}">E</a> </button>
+                                            <a class="buttons" href="{{ route('admin.enquiry.edit', $enquiry->id) }}">E</a>
                                             <form action="{{ route('admin.enquiries.delete', $enquiry->id) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="buttons">D</button>
                                             </form>
-                                            <button type="button" class="buttons"> <a href="{{ route('admin.enquiries.view', $enquiry->id) }}">V</a> </button>
+                                            <a class="buttons" href="{{ route('admin.enquiries.view', $enquiry->id) }}">V</a>
                                         </div>
                                     </td>
                                 </tr>

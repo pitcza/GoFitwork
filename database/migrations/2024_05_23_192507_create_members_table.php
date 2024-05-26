@@ -25,7 +25,7 @@ return new class extends Migration
 
             // subscription info
             $table->decimal('subscription_fee', 10, 2)->nullable();
-            // $table->enum('payment_status', ['Pending', 'Paid'])->default('Pending');
+            $table->enum('payment_status', ['Pending', 'Paid'])->default('Pending');
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
 

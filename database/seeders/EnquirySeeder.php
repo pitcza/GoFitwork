@@ -15,6 +15,6 @@ class EnquirySeeder extends Seeder
      */
     public function run(): void
     {
-        Enquiry::factory()->count(15)->create();
+        Enquiry::factory()->count(20)->create();
     }
 }

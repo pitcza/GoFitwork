@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 
 class AdminDashboardController extends Controller
 {
-    // show dashboard page for user
+    // show dashboard page for admin
     public function index() {
         
         // fetch total counts
@@ -22,22 +22,19 @@ class AdminDashboardController extends Controller
         $totalMembers = Member::distinct('subscription_id')->count('subscription_id');
         $totalSubscriptions = Subscription::count();
 
-        // retrieve distinct member names and subscription info for each unique subscription ID
-        $members = Member::select('members.subscription_id', 'members.firstname', 'members.lastname', 'members.email')
-            ->distinct('members.subscription_id')
-            ->get();
+        // fetch the count of members grouped by year and month
+        $monthlyMemberCounts = Member::select(
+            DB::raw('YEAR(created_at) as year'),
+            DB::raw('MONTH(created_at) as month'),
+            DB::raw('COUNT(*) as member_count')
+        )
+        ->groupBy('year', 'month')
+        ->orderBy('year', 'asc')
+        ->orderBy('month', 'asc')
+        ->get();
 
-        // retrieve the count of member_ids for each subscription_id
-        $subscriptionCounts = Member::select('subscription_id', DB::raw('count(*) as member_count'))
-            ->groupBy('subscription_id')
-            ->get();
+        $members = Member::all();
 
-        // map the subscription counts to the members array
-        $members->each(function ($member) use ($subscriptionCounts) {
-            $subscriptionCount = $subscriptionCounts->where('subscription_id', $member->subscription_id)->first();
-            $member->member_count = $subscriptionCount ? $subscriptionCount->member_count : 0;
-        });
-
-        return view('admin.dashboard', compact('totalEnquiries', 'totalMembers', 'totalSubscriptions', 'members'));
+        return view('admin.dashboard', compact('totalEnquiries', 'totalMembers', 'totalSubscriptions', 'monthlyMemberCounts', 'members'));
     }
 }

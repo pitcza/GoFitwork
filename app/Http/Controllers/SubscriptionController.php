@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-// model
+// models
 use App\Models\Enquiry;
 use App\Models\Subscription;
 use App\Models\Member;
@@ -21,7 +21,7 @@ class SubscriptionController extends Controller
         return view('admin.subscriptions.subscriptions', compact('subscriptions'));
     }
 
-    // show subscription
+    // show subscription by id
     public function getSubscription($id) {        
         $subscriptions = Subscription::findOrFail($id);
         return view('admin.subscriptions.view', compact('subscription'));
@@ -37,6 +37,11 @@ class SubscriptionController extends Controller
     // add or store subscription process
     public function addSubscription(Request $request, $subscriptionId) {
         $subscription = Subscription::findOrFail($subscriptionId);
+
+        // check if the member already has a subscription
+        if (Member::where('subscription_id', $subscriptionId)->exists()) {
+            return redirect()->route('admin.subscriptions')->with('error', 'This member already has a subscription.');
+        }
 
         $validatedData = $request->validate([
             'duration' => 'required|integer|min:1',
@@ -58,19 +63,6 @@ class SubscriptionController extends Controller
         // create end date by adding duration months to start date
         $endDate = $startDate->copy()->addMonths($durationMonths);
 
-        // default status of member subscription
-        $status = 'Ongoing';
-
-        // check if there is one week left before the end date and update the status "Ending"
-        if ($endDate->diffInDays(Carbon::now()) <= 7) {
-            $status = 'Ending';
-        }
-
-        // check if end date has passed and update status to "End"
-        if ($endDate->isPast()) {
-            $status = 'End';
-        }
-
         // create a new member and copy personal data
         $member = new Member();
         $member->firstname = $subscription->firstname;
@@ -82,17 +74,23 @@ class SubscriptionController extends Controller
         $member->reason = $subscription->reason;
         // copy subscription data
         $member->subscription_fee = $subscriptionFee;
+        $member->payment_status = 'Paid'; // default status kapag inadd
         $member->start_date = $startDate;
         $member->end_date = $endDate;
         $member->subscription_id = $subscription->id;
-        $member->status = $status; // set default status
+        $member->status = 'Ongoing'; // default status kapag inadd
         $member->save();
 
-        // count the number of subscriptions for each member
-        $members = Member::select('members.*', DB::raw('(SELECT COUNT(*) FROM subscriptions WHERE subscriptions.member_id = members.id) AS subscription_count'))
-            ->get();
+        // update the subscription record
+        $subscription->subscription_fee = $subscriptionFee;
+        $subscription->payment_status = 'Paid';
+        $subscription->start_date = $startDate;
+        $subscription->end_date = $endDate;
+        $subscription->status = 'Ongoing';
+        $subscription->member_id = $member->id;
+        $subscription->save();
 
-        return redirect()->route('admin.members')->with('success', 'Subscription copied to member successfully.');
+        return redirect()->route('admin.members')->with('success', 'Subscription added successfully.');
     }
 
     // edit subscription

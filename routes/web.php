@@ -80,7 +80,7 @@ Route::group(['prefix' => 'admin'], function() {
 
         //----- MEMBERS -----//
         Route::get('members', [MemberController::class, 'getMembers'])->name('admin.members');
-        Route::get('members/subs', [MemberController::class, 'countForMember'])->name('members.subscount');
+        Route::get('member/{id}', [MemberController::class, 'getMember'])->name('admin.member.view');
 
     });
 });

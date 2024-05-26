@@ -16,13 +16,24 @@
                         <h1> subscription </h1>
                         <button class="action-btn">Expiring</button>
                     </div>
+
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success mt-2">
+                        {{ $message }}
+                        </div>                        
+                    @elseif ($message = Session::get('error'))
+                        <div class="alert alert-danger mt-2">
+                        {{ $message }}
+                        </div> 
+                    @endif
+
                     <table class="content-table">
                         <thead>
                           <tr>
                             <th>ID</th>
                             <th>Name</th>
                             <th>Amount</th>
-                            <th>Payed On</th>
+                            <th>Payment Status</th>
                             <th class="action">Action</th>
                           </tr>
                         </thead>
@@ -32,8 +43,8 @@
                                 <tr>
                                     <td>{{ $subscription->id }}</td>
                                     <td>{{ $subscription->firstname }} {{ $subscription->lastname }}</td>
-                                    <td>{{ $subscription->subscription_fee }}</td>
-                                    <td>{{ optional($subscription->created_at)->format('F d, Y') }}</td>
+                                    <td> {{ $subscription->subscription_fee !== null ? $subscription->subscription_fee : 'Pending' }} </td>
+                                    <td>{{ $subscription->payment_status }}</td>
                                     <td>
                                         <div class="form-group">
                                         <button class="button"><a href="{{ route('admin.subscription.create', $subscription->id) }}">Add</a></button>

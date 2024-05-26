@@ -20,22 +20,33 @@
                     <div class="forms">
                         <h1> LOGIN </h1>
                         <h2> Welcome to GoFitwork! </h2>
+
+                        @if ($message = Session::get('error'))
+                            <div class="alert">
+                            {{ $message }}
+                            </div>
+                        @endif
+
+                        @error('username')
+                            <p class="invalid-feedback"> {{ $message }} </p>
+                        @enderror
+
+                        @error('password')
+                            <p class="invalid-feedback"> {{ $message }} </p>
+                        @enderror
+
                         <div class="form-content">
                             <form action="{{ route('admin.authenticate')}}" method="POST">
                                 @csrf
                                 <div class="email">
                                     <input type="username" class="form-control @error('username') is-invalid @enderror" value="{{ old('username') }}" name="username" id="username"> 
                                     <label for="username" class="labelline">Username</label>
-                                    @error('username')
-                                                    <p class="invalid-feedback"> {{ $message }} </p>
-                                                @enderror
+                                    
                                 </div>
                                 <div class="password">
                                     <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" value=""> 
                                     <label for="password" class="labelline_1">Password</label>
-                                                @error('password')
-                                                    <p class="invalid-feedback"> {{ $message }} </p>
-                                                @enderror
+                                    
                                 </div>
         
                                 <div class="login-btn">

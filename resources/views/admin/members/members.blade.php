@@ -15,6 +15,13 @@
                     <div class="header1">
                         <h1>Members</h1>
                     </div>
+
+                    @if ($message = Session::get('success'))
+                            <div class="alert alert-success mt-2">
+                            {{ $message }}
+                            </div>
+                    @endif
+
                     <div class="content">
                         <table class="content-table">
                             <thead>
@@ -24,7 +31,6 @@
                                 <th> Amount </th>
                                 <th> Member Since </th>
                                 <th> Status </th>
-                                <th> Total Subscriptions </th>
                                 <th> Action </th>
                             </tr>
                             </thead>
@@ -33,11 +39,10 @@
                                 <tr>
                                     <td>{{ $member->subscription_id }}</td>
                                     <td>{{ $member->firstname }} {{ $member->lastname }}</td>
-                                    <td>{{ optional($member->created_at)->format('F d, Y') }}</td>
-                                    <td>{{ $member->start_date }}</td>
+                                    <td>{{ $member->subscription_fee }}</td>
+                                    <td>{{ optional($member->created_at)->format('F d, Y') ?? 'N/A' }}</td>
                                     <td>{{ $member->status }}</td>
-                                    <td>{{ $member->member_count }}</td>
-                                    <td><button class="delete-btn">Action</button></td>
+                                    <td> <a href="{{ route('admin.member.view', $member->id) }}"> view </a> </td>
                                 </tr>
                             @endforeach
                             </tbody>

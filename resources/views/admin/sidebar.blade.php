@@ -30,7 +30,7 @@
                     </li>
 
                     <li class="tab">
-                        <a class="tab-link {{ request()->routeIs('admin.members') ? 'active' : '' }}" href="{{ route('admin.members')}}">
+                        <a class="tab-link {{ request()->routeIs('admin.members', 'admin.member.view') ? 'active' : '' }}" href="{{ route('admin.members')}}">
                         <span class="tab-icon"> <i class='bx bxs-user-detail' ></i> </span>
                         <span class="tab-name"> Members </span>
                         </a>

@@ -9,8 +9,6 @@ class Member extends Model
 {
     use HasFactory;
 
-    use HasFactory;
-
     protected $fillable = [
         'subscription_id',
         'status',

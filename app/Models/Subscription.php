@@ -13,7 +13,7 @@ class Subscription extends Model
 
     protected $fillable = [
         'firstname', 'lastname', 'email', 'barangay', 'gender', 'occupation', 'reason',
-        'subscription_fee', 'start_date', 'end_date'
+        'subscription_fee', 'payment_status', 'start_date', 'end_date'
     ];
 
     protected $dates = [

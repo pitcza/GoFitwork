@@ -27,7 +27,9 @@
                                 <!--- <img src="assets/images/CCS.png"> -->
                                 </div>
                                 <div class="box1">
-                                    <h1 class="members"> 9</h1>
+                                    @foreach ($monthlyMemberCounts as $count)
+                                    <h1 class="members"> {{ $count->member_count ?? '0' }} </h1>
+                                    @endforeach
                                     <h3>Monthly Joined </h3>
                                 </div>
                             </a>
@@ -64,7 +66,7 @@
                                                         <td>{{ $member->firstname }} {{ $member->lastname }}</td>
                                                         <td>{{ $member->gender }}</td>
                                                         <td>{{ $member->status }}</td>
-                                                        <td>{{ $member->created_at }}</td>
+                                                        <td>{{ optional($member->created_at)->format('F d, Y') ?? 'N/A' }}</td>
                                                     </tr>
                                                 @endforeach
                                                 </tbody>

@@ -15,6 +15,7 @@ class EnquiryController extends Controller
     // get enquiries
     public function getEnquiries() {        
         $enquiries = Enquiry::all();
+        $enquiries = Enquiry::orderBy('created_at', 'desc')->get();
         return view('admin.enquiries.enquiries', compact('enquiries'));
     }
 
@@ -43,7 +44,7 @@ class EnquiryController extends Controller
         ]);
 
         Enquiry::create($request->all());
-        return redirect()->route('admin.enquiries')->with('success', 'Enquiry created successfully.');
+        return redirect()->route('admin.enquiries')->with('success', 'Inquiry added successfully.');
     }
 
     // edit enquiry
@@ -75,28 +76,32 @@ class EnquiryController extends Controller
 
         // log enquiry data after update
         \Log::info('Enquiry data after update: ', $enquiry->toArray());
-        return redirect()->route('admin.enquiries')->with('success', 'Enquiry updated successfully.');
+        return redirect()->route('admin.enquiries')->with('success', 'Inquiry updated successfully.');
     }
 
     // approve enquiry -> store to subscriptions table
     public function approveEnquiry(Enquiry $enquiry) {
         // check if enquiry is already approved
         if ($enquiry->status === 'approved') {
-            return redirect()->back()->with('error', 'Enquiry has already been approved.');
+            return redirect()->back()->with('error', 'Inquiry has already been approved.');
         }
 
+        // shift data to subscriptions table with payment_status as "Pending"
+        $subscriptionData = $enquiry->toArray();
+        $subscriptionData['payment_status'] = 'Pending';
+
         // shift data to subscriptions table
-        Subscription::create($enquiry->toArray());
+        Subscription::create($subscriptionData);
 
         // dekete the enquiry when approved
         $enquiry->delete();
-        return redirect()->back()->with('success', 'Enquiry approved and shifted to subscriptions successfully.');
+        return redirect()->back()->with('success', 'Inquiry approved successfully.');
     }
 
     // delete enquiry
     public function deleteEnquiry($id) {
         $enquiry = Enquiry::findOrFail($id);
         $enquiry->delete();
-        return redirect()->route('admin.enquiries')->with('success', 'Enquiry deleted successfully.');
+        return redirect()->route('admin.enquiries')->with('success', 'Inquiry deleted successfully.');
     }
 }
