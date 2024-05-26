@@ -2,13 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
-// added
+// hindi need
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
 
-// admin contents controllers
+// admin controllers
 use App\Http\Controllers\AdminController;
-
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\EnquiryController;
 use App\Http\Controllers\SubscriptionController;
@@ -47,31 +46,42 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('logout', [AdminController::class, 'logout'])->name('admin.logout');
         Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
-        // FOR ENQUIRIES
-        Route::get('enquiriestab', [EnquiryController::class, 'viewtab'])->name('admin.enquiries');
+        //----- ENQUIRIES -----//
         Route::get('enquiries', [EnquiryController::class, 'getEnquiries'])->name('admin.enquiries');
         Route::get('enquiries/{id}', [EnquiryController::class, 'getEnquiry'])->name('admin.enquiries.view');
-        // add
-        Route::get('enquiries/create', [EnquiryController::class, 'create'])->name('admin.enquiries.create');
-        Route::post('enquiries/store', [EnquiryController::class, 'addEnquiry'])->name('admin.enquiries.store');
-        // edit
-        Route::get('enquiries/edit/{id}', [EnquiryController::class, 'edit'])->name('admin.enquiries.edit');
-        Route::put('enquiries/update/{id}', [EnquiryController::class, 'updateEnquiry'])->name('admin.enquiries.update');
-        // delete
+        
+        // ADD ENQUIRIES
+        Route::get('enquiry/create', [EnquiryController::class, 'createEnquiry'])->name('admin.enquiry.create');
+        Route::post('enquiry/store', [EnquiryController::class, 'addEnquiry'])->name('admin.enquiry.store');
+        
+        // EDIT ENQUIRY
+        Route::get('enquiry/edit/{id}', [EnquiryController::class, 'edit'])->name('admin.enquiry.edit');
+        Route::put('enquiry/update/{id}', [EnquiryController::class, 'updateEnquiry'])->name('admin.enquiry.update');
+        
+        // DELETE ENQUIRY
         Route::delete('enquiries/delete/{id}', [EnquiryController::class, 'deleteEnquiry'])->name('admin.enquiries.delete');
-        // approve
-        Route::post('admin/enquiries/{id}/approve', [EnquiryController::class, 'approveEnquiry'])->name('admin.enquiries.approve');
 
-        // FOR SUBSCRIPTION
-        Route::get('subscriptionstab', [SubscriptionController::class, 'viewtab'])->name('admin.subscriptions');
+        // APPROVE ENQUIRY
+        Route::post('enquiries/{enquiry}/approve', [EnquiryController::class, 'approveEnquiry'])->name('admin.enquiries.approve');
+
+        //----- SUBSCRIPTION -----//
         Route::get('subscriptions', [SubscriptionController::class, 'getSubscriptions'])->name('admin.subscriptions');
 
-        Route::get('admin/subscriptions/{id}/add', [SubscriptionController::class, 'addSubscription'])->name('admin.subscriptions.add');
-        Route::post('admin/subscriptions/store', [SubscriptionController::class, 'storeSubscription'])->name('admin.subscriptions.store');
+        // ADD SUBSCRIPTION
+        Route::get('subscription/create/{id}', [SubscriptionController::class, 'createSubs'])->name('admin.subscription.create');
+        Route::post('subscription/add/{id}', [SubscriptionController::class, 'addSubscription'])->name('admin.subscription.add');
 
-        // FOR MEMBERS
-        Route::get('memberstab', [MemberController::class, 'viewtab'])->name('admin.members');
+        // EDIT SUBSCRIPTION
+        Route::get('subscription/{id}/edit', [SubscriptionController::class, 'editSubscription'])->name('admin.subscription.edit');
+        Route::put('subscription/{id}', [SubscriptionController::class, 'updateSubscription'])->name('admin.subscription.update');
+
+        // DELETE SUSCRIPTION
+        Route::delete('subscriptions/{id}', [SubscriptionController::class, 'deleteSubscription'])->name('admin.subscriptions.delete');
+
+        //----- MEMBERS -----//
         Route::get('members', [MemberController::class, 'getMembers'])->name('admin.members');
+        Route::get('members/subs', [MemberController::class, 'countForMember'])->name('members.subscount');
+
     });
 });
 

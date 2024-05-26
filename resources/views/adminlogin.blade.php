@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title> GoFitwork </title>
         <link rel="stylesheet" href="{{asset('css/login.css')}}">
+        <link rel="icon" href="{{asset('assets/logo.png')}}">
 
         <!-- POPPINS -->
         <link rel="preconnect" href="https://fonts.googleapis.com">

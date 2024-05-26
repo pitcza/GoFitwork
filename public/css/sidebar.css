@@ -76,10 +76,6 @@
     transition: all 0.5s ease;
 }
 
-.tab-link:hover {
-    background-color: #27636b;
-}
-
 .tab-link.active {
     font-weight: 500;
     width: 100%;

@@ -12,7 +12,7 @@
             <div class="body-content">
                 <div class="container">
                     <h1>Edit Enquiry</h1>
-                    <form action="{{ route('admin.enquiries.update', $enquiry->id) }}" method="POST">
+                    <form action="{{ route('admin.enquiry.update', $enquiry->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         @include('admin.enquiries.form')

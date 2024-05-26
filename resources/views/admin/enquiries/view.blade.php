@@ -24,7 +24,7 @@
                         <p class="card-text"><strong>Start By:</strong> {{ $enquiry->start_by }}</p>
                         <p class="card-text"><strong>Reason:</strong> {{ $enquiry->reason }}</p>
                         <a href="{{ route('admin.enquiries') }}" class="btn btn-primary">Back to Enquiries</a>
-                        <a href="{{ route('admin.enquiries.edit', $enquiry->id) }}" class="btn btn-secondary">Edit</a>
+                        <a href="{{ route('admin.enquiry.edit', $enquiry->id) }}" class="btn btn-secondary">Edit</a>
                     </div>
                 </div>
             </div>

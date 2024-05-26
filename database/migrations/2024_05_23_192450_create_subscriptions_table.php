@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
-
             // $table->unsignedBigInteger('enquiry_id');
             // $table->foreign('enquiry_id')->references('id')->on('enquiries');
 
@@ -26,13 +25,12 @@ return new class extends Migration
             $table->string('occupation', 255);
             $table->string('reason', 512);
 
-            // // subscription data
-            // $table->decimal('subscription_fee', 10, 2);
-            // //$table->date('payment_date');
-            // //$table->string('payment_status');
-            // $table->date('start_date');
-            // $table->date('end_date');
-            $table->timestamps(); // date for payment date and member-since-date?
+            // subscription data
+            $table->decimal('subscription_fee', 10, 2)->nullable();
+            // $table->enum('payment_status', ['Pending', 'Paid'])->default('Pending');
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
+            $table->timestamps();
             $table->softDeletes();
         });
     }

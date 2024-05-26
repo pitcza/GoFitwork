@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-// added
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -62,6 +61,7 @@ class AdminController extends Controller
         return response()->json(['token' => $token]);
     }
 
+    // logout admin
     public function logout() {
         Auth::guard('admin')->logout();
         return redirect()->route('admin.adminlogin');

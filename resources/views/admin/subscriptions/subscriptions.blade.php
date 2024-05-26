@@ -2,6 +2,7 @@
 <html lang="en">
     {{-- TAB TITLE AND SOURCES --}}
     @include('admin.gofitwork')
+    <link rel="stylesheet" href="{{asset('css/subs/table.css')}}">
 
     <body>
         <div class="content">
@@ -11,32 +12,46 @@
             {{-- MAIN CONTENT --}}
             <div class="body-content">
                 <div class="container">
-                    <h1>Subscriptions</h1>
-                    <table class="table">
+                    <div class="header1">
+                        <h1> subscription </h1>
+                        <button class="action-btn">Expiring</button>
+                    </div>
+                    <table class="content-table">
                         <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Email</th>
-                                <th>Barangay</th>
-                                <!-- Add more columns as needed -->
-                            </tr>
+                          <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Amount</th>
+                            <th>Payed On</th>
+                            <th class="action">Action</th>
+                          </tr>
                         </thead>
                         <tbody>
-                            @foreach ($subscriptions as $subscription)
-                            <tr>
-                                <td>{{ $subscription->id }}</td>
-                                <td>{{ $subscription->firstname }}</td>
-                                <td>{{ $subscription->lastname }}</td>
-                                <td>{{ $subscription->email }}</td>
-                                <td>{{ $subscription->barangay }}</td>
-                                <!-- Add more columns as needed -->
-                            </tr>
-                            @endforeach
+                            <tbody>
+                                @foreach ($subscriptions as $subscription)
+                                <tr>
+                                    <td>{{ $subscription->id }}</td>
+                                    <td>{{ $subscription->firstname }} {{ $subscription->lastname }}</td>
+                                    <td>{{ $subscription->subscription_fee }}</td>
+                                    <td>{{ optional($subscription->created_at)->format('F d, Y') }}</td>
+                                    <td>
+                                        <div class="form-group">
+                                        <button class="button"><a href="{{ route('admin.subscription.create', $subscription->id) }}">Add</a></button>
+                                        <form action="{{ route('admin.subscriptions.delete', $subscription->id) }}" method="POST" style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="button">Delete</button>
+                                        </form>
+                                        <button type="button" class="button"> <a href=""> View </a> </button>
+                                        <!-- Add more actions as needed -->
+                                        </div>
+                                    </td>
+                                   
+                                </tr>
+                                @endforeach
+                            </tbody>
                         </tbody>
                     </table>
-                    {{-- {{ $subscriptions->links() }} <!-- Pagination links --> --}}
                 </div>
             </div>
 

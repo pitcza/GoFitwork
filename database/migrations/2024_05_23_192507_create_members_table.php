@@ -13,14 +13,31 @@ return new class extends Migration
     {
         Schema::create('members', function (Blueprint $table) {
             $table->id();
-            $table->string('firstname');
-            $table->string('lastname');
-            $table->string('email')->unique();
-            $table->decimal('subscription_fee', 10, 2); // Assuming subscription fee is a decimal value
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->enum('status', ['Ongoing', 'Ending', 'Expired'])->default('Ongoing');
+
+            // members info
+            $table->string('firstname', 155);
+            $table->string('lastname', 155);
+            $table->string('email', 155);
+            $table->string('barangay', 255);
+            $table->string('gender', 55);
+            $table->string('occupation', 255);
+            $table->string('reason', 512);
+
+            // subscription info
+            $table->decimal('subscription_fee', 10, 2)->nullable();
+            // $table->enum('payment_status', ['Pending', 'Paid'])->default('Pending');
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
+
+            $table->foreignId('subscription_id')->constrained()->onDelete('cascade');
+            $table->enum('status', ['Ongoing', 'Ending', 'Ended'])->default('Ongoing');
             $table->timestamps();
+            $table->softDeletes();
+        });
+
+        Schema::table('subscriptions', function (Blueprint $table) {
+            //$table->foreignId('member_id')->constrained('members')->onDelete('cascade');
+            $table->foreignId('member_id')->nullable()->constrained()->onDelete('set null');
         });
     }
 

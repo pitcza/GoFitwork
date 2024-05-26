@@ -1,0 +1,125 @@
+.content {
+    justify-content: center;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/*   HEAD CONTENT */ 
+
+.header1 {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 30px;
+}
+
+.header1 h1 {
+    font-weight: 500;
+    font-family: 'poppins';
+    text-transform: uppercase;
+    font-size: 23px;
+}
+
+.header1 a {
+    text-align: center;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.header1 a h2 {
+    font-size: 15px;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+.header1 .add-enquiries {
+    align-items: center;
+    background-color: #21565D;
+    text-decoration: none;
+    color: white;
+    border-radius: 5px;
+    padding-top: 9px;
+    margin-top: -10px;
+    font-size: 16px;
+    width: 140px;
+    height: 40px;
+    box-shadow: 0 4px 3px rgba(0, 0, 0, 0.322);
+    transition: .3s;
+    transform: translate(0px, 0px);
+}
+
+.header1 .add-enquiries:hover {
+    box-shadow: 0px, 8px, 15px, -10px rgb(125, 125, 125);
+    transform: translate(0px, -2px);
+    background: #21565D;
+    margin-top: -10px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/*************** TABLE ***********************/ 
+
+.content-table {
+    border-collapse: collapse;
+    margin: 15px 0px;
+    font-size: 1em;
+    width: 100%;
+    border-radius: 5px 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content-table thead tr {
+    background-color: #21565D;
+    color: #fff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.content-table th {
+    padding: 15px 25px;
+    font-weight: 500;
+    text-align: left;
+}
+
+.content-table .action {
+    padding: 15px 25px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.content-table td {
+    padding: 15px 25px;
+    text-align: left;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.buttons {
+    align-items: center;
+    background-color: #21565D;
+    text-decoration: none;
+    border: none;
+    margin-left: 5px;
+    color: white;
+    border-radius: 5px;
+    padding-top: 8px;
+    font-size: 16px;
+    width: 70px;
+    height: 60px;
+    transition: .3s;
+    transform: translate(0px, 0px);
+
+}
+
+.buttons a {
+    text-decoration: none;
+    color:#fff;
+}
+
+.form-group {
+    margin-left: 20px
+}
+

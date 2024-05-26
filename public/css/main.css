@@ -7,6 +7,10 @@ body {
     text-decoration: none;
 }
 
+a {
+    text-decoration: none;
+}
+
 /**** MAIN BODY CONTENT PADDING ****/
 .body-content {
     padding-left: 220px;

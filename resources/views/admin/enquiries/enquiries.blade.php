@@ -2,6 +2,7 @@
 <html lang="en">
     {{-- TAB TITLE AND SOURCES --}}
     @include('admin.gofitwork')
+    <link rel="stylesheet" href="{{asset('css/enquiries/enquiries.css')}}">
 
     <body>
         <div class="content">
@@ -10,24 +11,30 @@
 
             {{-- MAIN CONTENT --}}
             <div class="body-content">
-                <div class="card">
-                    <div class="card-header">
-                        <h1>Enquiries</h1>
-                        <a href="{{ route('admin.enquiries.create') }}" class="btn btn-primary">Add Enquiry</a>
-                        @if ($message = Session::get('success'))
+                <div class="content">
+                    <div class="header1"> 
+                        <h1> Inquiries </h1>
+                        <a href="{{ route('admin.enquiry.create') }}" class="add-enquiries">Add Inquiry</a>
+                    </div>
+
+                    @if ($message = Session::get('success'))
                             <div class="alert alert-success mt-2">
                             {{ $message }}
                             </div>
-                        @endif
-                    </div>
-                    <div class="card-body">
-                        <table class="table">
-                            <thead>
+                    @endif
+
+                    <!---------- TABLE ------------> 
+
+                    <div class="table">
+                        <table class="container">
+                            <section class="table">
+                                <table class="content-table">
+                                    <thead class="table-head"> 
                                 <tr>
-                                    <th>Full Name</th>
+                                    <th>Name</th>
                                     <th>Barangay</th>
                                     <th>Gender</th>
-                                    <th>Actions</th>
+                                    <th class="action">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -36,26 +43,19 @@
                                     <td>{{ $enquiry->firstname }} {{ $enquiry->lastname }}</td>
                                     <td>{{ $enquiry->barangay }}</td>
                                     <td>{{ $enquiry->gender }}</td>
-                                    <td>
-                                        {{-- <a href="{{ route('enquiries.show', $enquiry->id) }}" class="btn btn-info">View</a>
-                                        <a href="{{ route('enquiries.edit', $enquiry->id) }}" class="btn btn-warning">Edit</a>
-                                        <form action="{{ route('enquiries.destroy', $enquiry->id) }}" method="POST" style="display:inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                        </form> --}}
+                                    <td class="action">
                                         <div class="btn-group" role="group" aria-label="Basic outlined example">
                                             <form action="{{ route('admin.enquiries.approve', $enquiry->id) }}" method="POST" style="display:inline-block;">
                                                 @csrf
-                                                <button type="submit" class="btn btn-success">Approve</button>
+                                                <button type="submit" class="buttons">A</button>
                                             </form>
-                                            <button type="button" class="btn btn-outline-primary"> <a href="{{ route('admin.enquiries.edit', $enquiry->id) }}"> Edit </a> </button>
+                                            <button type="button" class="buttons"> <a href="{{ route('admin.enquiry.edit', $enquiry->id) }}">E</a> </button>
                                             <form action="{{ route('admin.enquiries.delete', $enquiry->id) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-outline-primary">Delete</button>
+                                                <button type="submit" class="buttons">D</button>
                                             </form>
-                                            <button type="button" class="btn btn-outline-primary"> <a href="{{ route('admin.enquiries.view', $enquiry->id) }}"> View </a> </button>
+                                            <button type="button" class="buttons"> <a href="{{ route('admin.enquiries.view', $enquiry->id) }}">V</a> </button>
                                         </div>
                                     </td>
                                 </tr>

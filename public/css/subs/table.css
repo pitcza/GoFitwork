@@ -1,0 +1,104 @@
+.container {
+    margin-top: 20px;
+}
+
+.header1 {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 30px;
+}
+
+.header1 h1{
+    font-weight: 500;
+    font-family: 'poppins';
+    text-transform: uppercase;
+    font-size: 23px;
+    
+}
+
+.action-btn {
+    align-items: center;
+    background-color: #21565D;
+    text-decoration: none;
+    color: white;
+    border-radius: 5px;
+    padding-top: 4px;
+    margin-top: -10px;
+    font-size: 16px;
+    width: 100px;
+    height: 40px;
+    box-shadow: 0 4px 3px rgba(0, 0, 0, 0.322);
+    transition: .3s;
+    transform: translate(0px, 0px);
+}
+
+.action-btn:hover {
+    box-shadow: 0px, 8px, 15px, -10px rgb(125, 125, 125);
+    transform: translate(0px, -2px);
+    background: #21565D;
+    margin-top: -10px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.content-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 1em; /* Increased font size */
+    width: 100%; /* Ensuring it doesn't get too wide */
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content-table thead tr {
+    background-color: #21565D;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.content-table th,
+.content-table td {
+    padding: 20px 25px; /* Increased padding for bigger cells */
+}
+
+.content-table .action {
+    padding: 15px 25px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.content-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.button {
+    align-items: center;
+    background-color: #21565D;
+    text-decoration: none;
+    border: none;
+    margin-left: 2px;
+    color: white;
+    border-radius: 5px;
+    padding-top: 8px;
+    font-size: 16px;
+    width: 70px;
+    height: 60px;
+    transition: .3s;
+    transform: translate(0px, 0px);
+
+}
+
+.button a {
+    text-decoration: none;
+    color:#fff;
+}
+
+.form-group {
+    margin-left: 150px;
+}
