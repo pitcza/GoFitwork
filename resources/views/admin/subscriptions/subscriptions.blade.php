@@ -14,7 +14,7 @@
                 <div class="container">
                     <div class="header1">
                         <h1> subscription </h1>
-                        <button class="action-btn">Expiring</button>
+                        <a class="action-btn" href="{{ route('admin.subscriptions.expiring') }}"> Expiring </a>
                     </div>
 
                     @if ($message = Session::get('success'))
@@ -48,13 +48,13 @@
                                     <td>
                                         <div class="form-group">
                                         <button class="button"><a href="{{ route('admin.subscription.create', $subscription->id) }}">Add</a></button>
+                                        <a class="button" href="{{ route('admin.subscription.edit', $subscription->id) }}">E</a>
                                         <form action="{{ route('admin.subscriptions.delete', $subscription->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button class="button">Delete</button>
                                         </form>
                                         <button type="button" class="button"> <a href=""> View </a> </button>
-                                        <!-- Add more actions as needed -->
                                         </div>
                                     </td>
                                    

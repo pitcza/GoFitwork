@@ -37,7 +37,7 @@
                     </li>
 
                     <li class="tab">
-                        <a class="tab-link {{ request()->routeIs('admin.subscriptions', 'admin.subscription.create') ? 'active' : '' }}" href="{{ route('admin.subscriptions')}}">
+                        <a class="tab-link {{ request()->routeIs('admin.subscriptions', 'admin.subscription.create', 'admin.subscriptions.expiring') ? 'active' : '' }}" href="{{ route('admin.subscriptions')}}">
                         <span class="tab-icon"> <i class='bx bxs-wallet' ></i> </span>
                         <span class="tab-name"> Subscriptions </span>
                         </a>

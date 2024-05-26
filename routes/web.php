@@ -17,23 +17,6 @@ Route::get('/', function () {
     return view('adminlogin');
 });
 
-Route::group(['prefix' => 'account'], function() {
-    // STAFF LOGIN
-    Route::group(['middleware' => 'guest'], function() {
-        Route::get('login', [LoginController::class, 'index'])->name('account.login');
-        Route::post('authenticate', [LoginController::class, 'authenticate'])->name('account.authenticate');
-
-        Route::get('register', [LoginController::class, 'register'])->name('account.register');
-        Route::post('process-register', [LoginController::class, 'processRegister'])->name('account.processRegister');
-    });
-
-    // STAFF AUTHENTICATED
-    Route::group(['middleware' => 'auth'], function() {
-        Route::get('logout', [LoginController::class, 'logout'])->name('account.logout');
-        Route::get('dashboard', [DashboardController::class, 'index'])->name('account.dashboard');
-    });
-});
-
 Route::group(['prefix' => 'admin'], function() {
     // ADMIN LOGIN
     Route::group(['middleware' => 'admin.guest'], function() {
@@ -75,13 +58,37 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('subscription/{id}/edit', [SubscriptionController::class, 'editSubscription'])->name('admin.subscription.edit');
         Route::put('subscription/{id}', [SubscriptionController::class, 'updateSubscription'])->name('admin.subscription.update');
 
+        // ENDING MEMBERS SUBSCRIPTION
+        Route::get('subscriptions/expiring', [SubscriptionController::class, 'showEndingAndEndedSubs'])->name('admin.subscriptions.expiring');
+
+        // RENEW MEMBER SUBSCRIPTION
+        Route::get('subscription/renew/{id}', [SubscriptionController::class, 'renewSubsForm'])->name('admin.subscription.renewsubs');
+        Route::put('subscription/renewprocess/{id}', [SubscriptionController::class, 'renewSubscriptions'])->name('admin.subscription.renew');
+
         // DELETE SUSCRIPTION
         Route::delete('subscriptions/{id}', [SubscriptionController::class, 'deleteSubscription'])->name('admin.subscriptions.delete');
 
         //----- MEMBERS -----//
-        Route::get('members', [MemberController::class, 'getMembers'])->name('admin.members');
+        Route::get('members', [MemberController::class, 'showMembers'])->name('admin.members');
         Route::get('member/{id}', [MemberController::class, 'getMember'])->name('admin.member.view');
 
     });
 });
 
+// HINDI NEED (1)
+Route::group(['prefix' => 'account'], function() {
+    // STAFF LOGIN
+    Route::group(['middleware' => 'guest'], function() {
+        Route::get('login', [LoginController::class, 'index'])->name('account.login');
+        Route::post('authenticate', [LoginController::class, 'authenticate'])->name('account.authenticate');
+
+        Route::get('register', [LoginController::class, 'register'])->name('account.register');
+        Route::post('process-register', [LoginController::class, 'processRegister'])->name('account.processRegister');
+    });
+
+    // STAFF AUTHENTICATED
+    Route::group(['middleware' => 'auth'], function() {
+        Route::get('logout', [LoginController::class, 'logout'])->name('account.logout');
+        Route::get('dashboard', [DashboardController::class, 'index'])->name('account.dashboard');
+    });
+});

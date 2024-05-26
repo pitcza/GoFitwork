@@ -15,17 +15,17 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Member Information</h5>
-                            <p><strong>First Name:</strong> {{ $member->firstname }}</p>
-                            <p><strong>Last Name:</strong> {{ $member->lastname }}</p>
-                            <p><strong>Email:</strong> {{ $member->email }}</p>
-                            <p><strong>Barangay:</strong> {{ $member->barangay }}</p>
-                            <p><strong>Gender:</strong> {{ $member->gender }}</p>
-                            <p><strong>Occupation:</strong> {{ $member->occupation }}</p>
-                            <p><strong>Reason:</strong> {{ $member->reason ?: 'N/A' }}</p>
-                            <p><strong>Status:</strong> {{ $member->status }}</p>
-                            <p><strong>Subscription Fee:</strong> {{ $member->subscription_fee }}</p>
-                            <p><strong>Start Date:</strong> {{ $member->start_date->format('F j, Y') }}</p>
-                            <p><strong>End Date:</strong> {{ $member->end_date->format('F j, Y') }}</p>
+                            <p><strong>First Name:</strong> {{ $subscription->firstname }}</p>
+                            <p><strong>Last Name:</strong> {{ $subscription->lastname }}</p>
+                            <p><strong>Email:</strong> {{ $subscription->email }}</p>
+                            <p><strong>Barangay:</strong> {{ $subscription->barangay }}</p>
+                            <p><strong>Gender:</strong> {{ $subscription->gender }}</p>
+                            <p><strong>Occupation:</strong> {{ $subscription->occupation }}</p>
+                            <p><strong>Reason:</strong> {{ $subscription->reason ?: 'N/A' }}</p>
+                            <p><strong>Status:</strong> {{ $subscription->status }}</p>
+                            <p><strong>Subscription Fee:</strong> {{ $subscription->subscription_fee }}</p>
+                            <p><strong>Start Date:</strong> {{ $subscription->start_date->format('F j, Y') }}</p>
+                            <p><strong>End Date:</strong> {{ $subscription->end_date->format('F j, Y') }}</p>
                         </div>
                     </div>
                 </div>

@@ -14,37 +14,20 @@ use Carbon\Carbon;
 
 class MemberController extends Controller
 {
-    // show members
-    public function getMembers() {
-        // retrieve distinct member names and subscription info for each unique subscription ID
-        // $members = Member::select('members.subscription_id', 'members.firstname', 'members.lastname', 'members.email', 'members.gender')
-        //     ->distinct('members.subscription_id')
-        //     ->get();
-
-        // retrieve the count of member_ids for each subscription_id
-        // $subscriptionCounts = Member::select('subscription_id', DB::raw('count(*) as member_count'))
-        //     ->groupBy('subscription_id')
-        //     ->get();
-
-        // // map the subscription counts to the members array
-        // $members->each(function ($member) use ($subscriptionCounts) {
-        //     $subscriptionCount = $subscriptionCounts->where('subscription_id', $member->subscription_id)->first();
-        //     $member->member_count = $subscriptionCount ? $subscriptionCount->member_count : 0;
-        // });
-
-        $members = Member::all();
-        $members = Member::orderBy('created_at', 'desc')->get();
-        return view('admin.members.members', compact('members'));
+    // show members if paid
+    public function showMembers() {
+        $subscriptions = Subscription::whereIn('payment_status', ['Paid'])->get();
+        return view('admin.members.members', compact('subscriptions'));
     }
 
     // show member by id
     public function getMember($id) {        
-        $member = Member::findOrFail($id);
+        $subscription = Subscription::findOrFail($id);
 
-        $member->start_date = Carbon::parse($member->start_date);
-        $member->end_date = Carbon::parse($member->end_date);
+        $subscription->start_date = Carbon::parse($subscription->start_date);
+        $subscription->end_date = Carbon::parse($subscription->end_date);
 
-        return view('admin.members.view', compact('member'));
+        return view('admin.members.view', compact('subscription'));
     }
 
 }
