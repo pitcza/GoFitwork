@@ -55,8 +55,6 @@ class EnquiryController extends Controller
 
     // update enquiry process
     public function updateEnquiry(Request $request, $id) {
-        \Log::info('Request data: ', $request->all());
-
         $request->validate([
             'firstname' => 'required|string|max:155',
             'lastname' => 'required|string|max:155',
@@ -69,13 +67,8 @@ class EnquiryController extends Controller
         ]);
 
         $enquiry = Enquiry::findOrFail($id);
-
-        // log enquiry data before update
-        \Log::info('Enquiry data before update: ', $enquiry->toArray());
         $enquiry->update($request->all());
 
-        // log enquiry data after update
-        \Log::info('Enquiry data after update: ', $enquiry->toArray());
         return redirect()->route('admin.enquiries')->with('success', 'Inquiry updated successfully.');
     }
 
@@ -86,14 +79,13 @@ class EnquiryController extends Controller
             return redirect()->back()->with('error', 'Inquiry has already been approved.');
         }
 
-        // shift data to subscriptions table with payment_status as "Pending"
+        // shift data to subscriptions table
         $subscriptionData = $enquiry->toArray();
         $subscriptionData['payment_status'] = 'Pending';
 
-        // shift data to subscriptions table
         Subscription::create($subscriptionData);
 
-        // dekete the enquiry when approved
+        // delete the enquiry when approved
         $enquiry->delete();
         return redirect()->back()->with('success', 'Inquiry approved successfully.');
     }

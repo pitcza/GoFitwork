@@ -29,22 +29,22 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('logout', [AdminController::class, 'logout'])->name('admin.logout');
         Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
-        //----- ENQUIRIES -----//
+        //----- INQUIRIES -----//
         Route::get('enquiries', [EnquiryController::class, 'getEnquiries'])->name('admin.enquiries');
         Route::get('enquiries/{id}', [EnquiryController::class, 'getEnquiry'])->name('admin.enquiries.view');
         
-        // ADD ENQUIRIES
+        // ADD INQUIRIES
         Route::get('enquiry/create', [EnquiryController::class, 'createEnquiry'])->name('admin.enquiry.create');
         Route::post('enquiry/store', [EnquiryController::class, 'addEnquiry'])->name('admin.enquiry.store');
         
-        // EDIT ENQUIRY
+        // EDIT INQUIRY
         Route::get('enquiry/edit/{id}', [EnquiryController::class, 'edit'])->name('admin.enquiry.edit');
         Route::put('enquiry/update/{id}', [EnquiryController::class, 'updateEnquiry'])->name('admin.enquiry.update');
         
-        // DELETE ENQUIRY
+        // DELETE INQUIRY
         Route::delete('enquiries/delete/{id}', [EnquiryController::class, 'deleteEnquiry'])->name('admin.enquiries.delete');
 
-        // APPROVE ENQUIRY
+        // APPROVE INQUIRY
         Route::post('enquiries/{enquiry}/approve', [EnquiryController::class, 'approveEnquiry'])->name('admin.enquiries.approve');
 
         //----- SUBSCRIPTION -----//
@@ -59,7 +59,7 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('subscription/{id}/edit', [SubscriptionController::class, 'editSubscription'])->name('admin.subscription.edit');
         Route::put('subscription/{id}', [SubscriptionController::class, 'updateSubscription'])->name('admin.subscription.update');
 
-        // ENDING MEMBERS SUBSCRIPTION
+        // ENDING AND ENDED MEMBERS SUBSCRIPTION
         Route::get('subscriptions/expiring', [SubscriptionController::class, 'showEndingAndEndedSubs'])->name('admin.subscriptions.expiring');
 
         // RENEW MEMBER SUBSCRIPTION

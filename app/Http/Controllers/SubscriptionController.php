@@ -66,7 +66,7 @@ class SubscriptionController extends Controller
         // create end date by adding duration months to start date
         $endDate = $startDate->copy()->addMonths($durationMonths);
 
-        $status = 'Ongoing'; // Default status
+        $status = 'Ongoing';
 
         // current date is before the start date
         if (Carbon::now()->lt($startDate)) {
@@ -156,7 +156,6 @@ class SubscriptionController extends Controller
             'renewalPeriod' => 'required|integer|min:1',
         ]);
 
-        // subscription fee per month
         $subscriptionFee = 1500 * $validatedData['renewalPeriod'];
 
         // calculate renewal period
@@ -186,9 +185,11 @@ class SubscriptionController extends Controller
 
         if ($currentDate->gt($endDate)) {
             $subscription->status = 'Ended';
-        } elseif ($currentDate->diffInDays($endDate) <= 7) {
+        } 
+        elseif ($currentDate->diffInDays($endDate) <= 7) {
             $subscription->status = 'Ending';
-        } else {
+        } 
+        else {
             $subscription->status = 'Ongoing';
         }
 

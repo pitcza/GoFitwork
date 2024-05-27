@@ -23,7 +23,6 @@ class MemberController extends Controller
     // show member by id
     public function getMember($id) {        
         $subscription = Subscription::findOrFail($id);
-
         $subscription->start_date = Carbon::parse($subscription->start_date);
         $subscription->end_date = Carbon::parse($subscription->end_date);
 
