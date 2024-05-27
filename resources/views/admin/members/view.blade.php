@@ -17,7 +17,7 @@
                     <a class="back" href="{{ route('admin.members') }}">Back</a>
                 </div>
                 
-                    <div class="card">
+                <div class="card">
                     <div class="card-header"> Personal Details</div>
                         <div class="card-body">
                             <p>First Name: <span>{{ $subscription->firstname }}</span></p>
@@ -27,13 +27,21 @@
                             <p>Gender: <span>{{ $subscription->gender }}</span></p>
                             <p>Occupation: <span>{{ $subscription->occupation }}</span></p>
                             <p>Reason: <span>{{ $subscription->reason ?: 'N/A' }}</span></p>
-                            <p>Status: <span>{{ $subscription->status }}</span></p>
+                        </div>
+                </div>
+
+                <div class="card">
+
+                    <div class="card-header"> Subscription Details</div>
+                        <div class="card-body">
                             <p>Subscription Fee: <span>{{ $subscription->subscription_fee }}</span></p>
+                            <p>Payment Status: <span>{{ $subscription->payment_status }}</span></p>
                             <p>Start Date: <span>{{ $subscription->start_date->format('F j, Y') }}</span></p>
                             <p>End Date: <span>{{ $subscription->end_date->format('F j, Y') }}</span></p>
+                            <p>Status: <span>{{ $subscription->status }}</span></p>
                         </div>
-                    </div>
                 </div>
+
             </div>
 
             {{-- SIDEBAR NATIN --}}

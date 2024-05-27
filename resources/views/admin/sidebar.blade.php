@@ -23,7 +23,7 @@
                     </li>
 
                     <li class="tab">
-                        <a class="tab-link {{ request()->routeIs('admin.enquiries', 'admin.enquiry.create', 'admin.enquiries.edit', 'admin.enquiries.view') ? 'active' : '' }}" href="{{ route('admin.enquiries')}}">
+                        <a class="tab-link {{ request()->routeIs('admin.enquiries', 'admin.enquiry.create', 'admin.enquiry.edit', 'admin.enquiries.view') ? 'active' : '' }}" href="{{ route('admin.enquiries')}}">
                         <span class="tab-icon"> <i class='bx bxs-info-circle' ></i> </span>
                         <span class="tab-name">Inquiries</span>
                         </a>
@@ -37,7 +37,7 @@
                     </li>
 
                     <li class="tab">
-                        <a class="tab-link {{ request()->routeIs('admin.subscriptions', 'admin.subscription.create', 'admin.subscriptions.expiring') ? 'active' : '' }}" href="{{ route('admin.subscriptions')}}">
+                        <a class="tab-link {{ request()->routeIs('admin.subscriptions', 'admin.subscription.create', 'admin.subscriptions.expiring', 'admin.subscription.renewsubs', 'admin.subscription.edit', 'admin.subscription.view') ? 'active' : '' }}" href="{{ route('admin.subscriptions')}}">
                         <span class="tab-icon"> <i class='bx bxs-wallet' ></i> </span>
                         <span class="tab-name"> Subscriptions </span>
                         </a>

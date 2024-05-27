@@ -40,7 +40,7 @@
                                 </div>
                                 <div class="box1">
                                     <h1> {{ $totalEnquiries }} </h1>
-                                    <h3>Total Enquiries</h3>
+                                    <h3>Total Inquiries</h3>
                                 </div>
                             </a>
                         

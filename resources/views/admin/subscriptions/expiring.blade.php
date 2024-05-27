@@ -14,13 +14,13 @@
                 <div class="container">
                 <div class="header1">
                         <h1> Expiring Subscription </h1>
-                        <a class="expiring" href="{{ route('admin.subscriptions.expiring') }}"> All </a>
+                        <a class="expiring" href="{{ route('admin.subscriptions') }}"> All </a>
                     </div>
 
                     @if ($message = Session::get('success'))
-                            <div class="alert alert-success mt-2">
-                            {{ $message }}
-                            </div>
+                        <div class="alert alert-success mt-2">
+                        {{ $message }}
+                        </div>
                     @endif
 
                     <div class="content">
@@ -35,6 +35,11 @@
                                 <th class= "action"> Action </th>
                             </tr>
                             </thead>
+
+                            @if ($subscriptions->isEmpty())
+                                <p class="nodata">No data available</p>
+                            @else
+
                             <tbody>
                             @foreach($subscriptions as $subscription)
                                 <tr>
@@ -49,6 +54,9 @@
                                 </tr>
                             @endforeach
                             </tbody>
+                            
+                            @endif
+
                         </table>
                     </div>
                 </div>

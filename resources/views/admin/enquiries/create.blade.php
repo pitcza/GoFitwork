@@ -15,7 +15,7 @@
                 <div class="content">
                     <div class="header1">
                     <h1>Enter Inquiry Details</h1>
-                    <a href="{{ route('admin.enquiry.create') }}" class="add-enquiries">Back</a>
+                    <a href="{{ route('admin.enquiries') }}" class="add-enquiries">Back</a>
                 </div>
                 <div class="form-content"> 
                     <form action="{{ route('admin.enquiry.store') }}" method="POST">
@@ -40,18 +40,18 @@
                             <label for="gender">Gender:</label>
                             <select type="select" class="form-control" id="gender" name="gender" value="{{ old('gender', $enquiry->gender ?? '') }}" required>
                                 <option value="">Choose Gender</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
                             </select>
                         </div>
                         <div class="form-group2">
                             <label for="occupation">Occupation:</label>
                             <select type="text" class="form-control" id="occupation" name="occupation" value="{{ old('occupation', $enquiry->occupation ?? '') }}" required>
                                 <option value="">Choose Occupation</option>
-                                <option value="student">Student</option>
-                                <option value="employeed">Employeed</option>
-                                <option value="unemployed">Unemployed</option>
-                                <option value="retired">Retired</option>
+                                <option value="Student">Student</option>
+                                <option value="Employeed">Employeed</option>
+                                <option value="Unemployed">Unemployed</option>
+                                <option value="Retired">Retired</option>
                             </select>
                         </div>
                         <div class="form-group1">
@@ -62,12 +62,12 @@
                             <label for="reason">Reason to join</label>
                             <select type="text" class="form-control" id="reason" name="reason" value="{{ old('reason', $enquiry->reason ?? '') }}" required>
                                 <option value="">Choose Reason</option>
-                                <option value="blood">Lowers blood pressure</option>
-                                <option value="improve">Improves flexibility</option>
-                                <option value="boost">Boost confidence</option>
-                                <option value="stress">Stress relief</option>
-                                <option value="mental">Mental Health</option>
-                                <option value="weight">Weight Loss</option>
+                                <option value="Lowers blood pressure">Lowers blood pressure</option>
+                                <option value="Improves flexibility">Improves flexibility</option>
+                                <option value="Boost confidence">Boost confidence</option>
+                                <option value="Stress relief">Stress relief</option>
+                                <option value="Mental Health">Mental Health</option>
+                                <option value="Weight Loss">Weight Loss</option>
                             </select>
                         </div>
 

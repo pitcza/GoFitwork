@@ -34,6 +34,11 @@
                                 <th> Action </th>
                             </tr>
                             </thead>
+
+                            @if ($subscriptions->isEmpty())
+                                <p class="nodata">No data available</p>
+                            @else
+
                             <tbody>
                             @foreach($subscriptions as $subscription)
                                 <tr>
@@ -46,6 +51,8 @@
                                 </tr>
                             @endforeach
                             </tbody>
+
+                            @endif
                         </table>
                     </div>
                 </div>

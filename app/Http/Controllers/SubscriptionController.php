@@ -156,21 +156,25 @@ class SubscriptionController extends Controller
             'renewalPeriod' => 'required|integer|min:1',
         ]);
 
-        // Calculate renewal period
+        // subscription fee per month
+        $subscriptionFee = 1500 * $validatedData['renewalPeriod'];
+
+        // calculate renewal period
         $renewalPeriod = intval($validatedData['renewalPeriod']);
 
-        // Calculate new end date
+        // new end date
         $newEndDate = $subscription->end_date->copy()->addMonths($renewalPeriod);
 
-        // Copy old end date as updated start date
+        // copy old end date as updated start date
         $newStartDate = $subscription->end_date->copy();
 
-        // Update subscription
+        // update subscription
+        $subscription->subscription_fee = $subscriptionFee;
         $subscription->start_date = $newStartDate;
         $subscription->end_date = $newEndDate;
         $subscription->save();
 
-        // Update subscription status
+        // update subscription status
         $this->updateSubscriptionStatus($subscription);
 
         return redirect()->route('admin.subscriptions.expiring')->with('success', 'Subscription renewed successfully.');   

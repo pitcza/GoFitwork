@@ -15,15 +15,15 @@
                 <div class="content">
                     <div class="header1">
                     <h1>Renew Subscription</h1>
-                    <a class="back" href="{{ route('admin.members') }}">Back</a>
+                    <a class="back" href="{{ route('admin.subscriptions.expiring') }}">Back</a>
                 </div>
                     <div class="card">
                     <div class="card-header">Subscription Details</div>
                         <div class="card-body">
-                            <p>Name: <span>{{ $subscription->fisrtname }} {{ $subscription->lastname }}</span></p>
+                            <p>Name: <span>{{ $subscription->firstname }} {{ $subscription->lastname }}</span></p>
                             <p>Status: <span>{{ $subscription->status }}</span></p>
-                            <p>Start Date: <span>{{ $subscription->start_date->format('Y-m-d') }}</span></p>
-                            <p>End Date: <span>{{ $subscription->end_date->format('Y-m-d') }}</span></p>
+                            <p>Start Date: <span>{{ $subscription->start_date->format('F j, Y') }}</span></p>
+                            <p>End Date: <span>{{ $subscription->end_date->format('F j, Y') }}</span></p>
                             <form action="{{ route('admin.subscription.renew', $subscription->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')

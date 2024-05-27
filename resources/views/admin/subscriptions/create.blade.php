@@ -26,7 +26,7 @@
                             </div>
                             <div class="input-box">
                                 <span class="details">Amount</span>
-                                <input type="text" name="subscription_fee" id="subscription_fee" value="$1,500" readonly>
+                                <input type="text" name="subscription_fee" id="subscription_fee" value="1,500" readonly>
                             </div>
                             <div class="input-box">
                                 <span class="details">Start Date</span>

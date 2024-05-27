@@ -14,7 +14,7 @@
             <div class="body-content">
                 <div class="container">
                     <div class="header1">
-                    <h1>Edit Subscription</h1>
+                    <h1>Edit Info</h1>
                 </div>
                 <div class="form-content"> 
                     <form action="{{ route('admin.subscription.update', $subscription->id) }}" method="POST">

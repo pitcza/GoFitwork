@@ -47,6 +47,10 @@
     text-decoration: none;
 }
 
+.card {
+    margin-bottom: 30px;
+}
+
 .card .card-header {
     font-size: 30px;
     font-weight: 700;
