@@ -22,9 +22,9 @@ class EnquiryFactory extends Factory
             'email' => fake()->unique()->safeEmail(),
             'barangay' => fake()->randomElement(['West Tapinac', 'East Tapinac', 'Gordon Heights']),
             'gender' => fake()->randomElement(['Male', 'Female']),
-            'occupation' => fake()->randomElement(['Student', 'Self-Employed', 'Professional']),
+            'occupation' => fake()->randomElement(['Student', 'Employeed', 'Unemployed', 'Retired']),
             'start_by' => fake()->date(),
-            'reason' => fake()->randomElement(['Build Muscle', 'Lose Weight', 'Lower Blood Pressure',  'Boost Mental Focus']),
+            'reason' => fake()->randomElement(['Lowers blood pressure', 'Improves flexibility', 'Boost confidence',  'Stress relief', 'Mental Health', 'Weight Loss']),
         ];
     }
 }

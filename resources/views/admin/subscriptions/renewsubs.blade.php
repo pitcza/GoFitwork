@@ -15,7 +15,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Subscription Details</h5>
-                            <p class="card-text"><strong>Name:</strong> {{ $subscription->name }}</p>
+                            <p class="card-text"><strong>Name:</strong> {{ $subscription->fisrtname }} {{ $subscription->lastname }}</p>
                             <p class="card-text"><strong>Status:</strong> {{ $subscription->status }}</p>
                             <p class="card-text"><strong>Start Date:</strong> {{ $subscription->start_date->format('Y-m-d') }}</p>
                             <p class="card-text"><strong>End Date:</strong> {{ $subscription->end_date->format('Y-m-d') }}</p>

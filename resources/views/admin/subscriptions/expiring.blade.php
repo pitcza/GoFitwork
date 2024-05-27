@@ -29,8 +29,8 @@
                             <tr>
                                 <th> ID </th>
                                 <th> Name </th>
-                                <th> Email </th>
-                                <th> Member Since </th>
+                                <th> Start Date </th>
+                                <th> End Date </th>
                                 <th> Status </th>
                                 <th> Action </th>
                             </tr>

@@ -38,16 +38,36 @@
                         </div>
                         <div class="form-group1">
                             <label for="gender">Gender:</label>
-                            <input type="text" name="gender" id="gender" class="form-control" value="{{ $subscription->gender }}" required>
+                            <select type="select" class="form-control" id="gender" name="gender" required>
+                                <option value="">Select Gender</option>
+                                <option value="Male" {{ $subscription->gender == 'Male' ? 'selected' : '' }}>Male</option>
+                                <option value="Female" {{ $subscription->gender == 'Female' ? 'selected' : '' }}>Female</option>
+                            </select>
                         </div>
                         <div class="form-group2">
                             <label for="occupation">Occupation:</label>
-                            <input type="text" name="occupation" id="occupation" class="form-control" value="{{ $subscription->occupation }}" required>
+                            <select type="text" class="form-control" id="occupation" name="occupation" required>
+                                <option value="">Choose Occupation</option>
+                                <option value="Student" {{ $subscription->occupation == 'Student' ? 'selected' : '' }}>Student</option>
+                                <option value="Employeed" {{ $subscription->occupation == 'Employeed' ? 'selected' : '' }}>Employeed</option>
+                                <option value="Unemployed" {{ $subscription->occupation == 'Unemployed' ? 'selected' : '' }}>Unemployed</option>
+                                <option value="Retired" {{ $subscription->occupation == 'Retired' ? 'selected' : '' }}>Retired</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="reason">Reason:</label>
-                            <textarea name="reason" id="reason" class="form-control">{{ $subscription->reason }}</textarea>
+                            <label for="reason">Reason to join</label>
+                            <select type="text" class="form-control" id="reason" name="reason" required>
+                                <option value="">Choose Reason</option>
+                                <option value="Lowers blood pressure" {{ $subscription->reason == 'Lowers blood pressure' ? 'selected' : '' }}>Lowers blood pressure</option>
+                                <option value="Improves flexibility" {{ $subscription->reason == 'Improves flexibility' ? 'selected' : '' }}>Improves flexibility</option>
+                                <option value="Boost confidence" {{ $subscription->reason == 'Boost confidence' ? 'selected' : '' }}>Boost confidence</option>
+                                <option value="Stress relief" {{ $subscription->reason == 'Stress relief' ? 'selected' : '' }}>Stress relief</option>
+                                <option value="Mental Health" {{ $subscription->reason == 'Mental Health' ? 'selected' : '' }}>Mental Health</option>
+                                <option value="Weight Loss" {{ $subscription->reason == 'Weight Loss' ? 'selected' : '' }}>Weight Loss</option>
+                            </select>
                         </div>
+
+                       
                         <button type="submit" class="update">Update</button>
                     </form>
                 </div>

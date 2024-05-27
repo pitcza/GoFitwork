@@ -16,18 +16,20 @@
                 </div>
                 <div class="card">
                     <div class="card-header">
-                        Details of Enquiry #{{ $enquiry->id }}
+                        Details of Subscription #{{ $subscription->id }}
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Name: {{ $enquiry->firstname }} {{ $enquiry->lastname }}</h5>
-                        <p class="card-text">Email: <span>{{ $enquiry->email }}</span></p>
-                        <p class="card-text">Barangay: <span>{{ $enquiry->barangay }}</span></p>
-                        <p class="card-text">Gender: <span>{{ $enquiry->gender }}</span></p>
-                        <p class="card-text">Occupation: <span>{{ $enquiry->occupation }}</span></p>
-                        <p class="card-text">Start By: <span>{{ $enquiry->start_by }}</span></p>
-                        <p class="card-text">Reason: <span>{{ $enquiry->reason }}</span></p>
-                        <a href="{{ route('admin.enquiries') }}" class="button">Back</a>
-                        <a href="{{ route('admin.enquiry.edit', $enquiry->id) }}" class="button1">Edit</a>
+                        <h5 class="card-title">Name: {{ $subscription->firstname }} {{ $subscription->lastname }}</h5>
+                        <p class="card-text">Email: <span>{{ $subscription->email }}</span></p>
+                        <p class="card-text">Barangay: <span>{{ $subscription->barangay }}</span></p>
+                        <p class="card-text">Gender: <span>{{ $subscription->gender }}</span></p>
+                        <p class="card-text">Occupation: <span>{{ $subscription->occupation }}</span></p>
+                        <p class="card-text">Reason: <span>{{ $subscription->reason }}</span></p>
+                        <p class="card-title">Subscription Fee: <span>{{ $subscription->subscription_fee !== null ? $subscription->subscription_fee : 'N/A' }}</span></p>
+                        <p class="card-title">Payment Status: <span>{{ $subscription->payment_status }}</span></p>
+                        <p class="card-title">Status: <span>{{ $subscription->status !== null ? $subscription->status : 'No Date Scheduled' }}</span></p>
+                        <a href="{{ route('admin.subscriptions') }}" class="button">Back</a>
+                        <a href="{{ route('admin.subscription.edit', $subscription->id) }}" class="button1">Edit</a>
                     </div>
                 </div>
             </div>

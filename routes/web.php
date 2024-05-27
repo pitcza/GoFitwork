@@ -49,6 +49,7 @@ Route::group(['prefix' => 'admin'], function() {
 
         //----- SUBSCRIPTION -----//
         Route::get('subscriptions', [SubscriptionController::class, 'getSubscriptions'])->name('admin.subscriptions');
+        Route::get('subscription/{id}', [SubscriptionController::class, 'getSubscription'])->name('admin.subscription.view');
 
         // ADD SUBSCRIPTION
         Route::get('subscription/create/{id}', [SubscriptionController::class, 'createSubs'])->name('admin.subscription.create');

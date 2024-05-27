@@ -14,7 +14,7 @@
             <div class="body-content">
                 <div class="header1">
                     <h1>Member Informations</h1>
-                    <a class="back">Back</a>
+                    <a class="back" href="{{ route('admin.members') }}">Back</a>
                 </div>
                 
                     <div class="card">

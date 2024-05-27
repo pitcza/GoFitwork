@@ -23,7 +23,10 @@ class SubscriptionController extends Controller
 
     // show subscription by id
     public function getSubscription($id) {        
-        $subscriptions = Subscription::findOrFail($id);
+        $subscription = Subscription::findOrFail($id);
+        $subscription->start_date = Carbon::parse($subscription->start_date);
+        $subscription->end_date = Carbon::parse($subscription->end_date);
+
         return view('admin.subscriptions.view', compact('subscription'));
     }
 
@@ -173,20 +176,19 @@ class SubscriptionController extends Controller
         return redirect()->route('admin.subscriptions.expiring')->with('success', 'Subscription renewed successfully.');   
     }
 
-    private function updateSubscriptionStatus($subscription)
-{
-    $currentDate = Carbon::now();
-    $endDate = Carbon::parse($subscription->end_date);
+    private function updateSubscriptionStatus($subscription) {
+        $currentDate = Carbon::now();
+        $endDate = Carbon::parse($subscription->end_date);
 
-    if ($currentDate->gt($endDate)) {
-        $subscription->status = 'Ended';
-    } elseif ($currentDate->diffInDays($endDate) <= 7) {
-        $subscription->status = 'Ending';
-    } else {
-        $subscription->status = 'Ongoing';
+        if ($currentDate->gt($endDate)) {
+            $subscription->status = 'Ended';
+        } elseif ($currentDate->diffInDays($endDate) <= 7) {
+            $subscription->status = 'Ending';
+        } else {
+            $subscription->status = 'Ongoing';
+        }
+
+        $subscription->save();
     }
-
-    $subscription->save();
-}
     
 }
