@@ -14,7 +14,7 @@
                         <div class="cards">
                             <div class="card1">
                                 <div class="icon-case1">
-                                <!-- <img src="assets/images/GC.png"> -->
+                                <img src="{{asset('assets/members.png')}}">
                                 </div>
                                 <div class="box1">
                                     <h1 class="members"> {{ $totalMembers }} </h1>
@@ -24,7 +24,7 @@
                     
                             <a class="card1">
                                 <div class="icon-case2">
-                                <!--- <img src="assets/images/CCS.png"> -->
+                                <img src="{{asset('assets/joined.png')}}">
                                 </div>
                                 <div class="box1">
                                     @foreach ($monthlyMemberCounts as $count)
@@ -36,7 +36,7 @@
                             
                             <a class="card1">
                                 <div class="icon-case3">
-                                    <!-- <img src="assets/images/CEAS.png" alt=""> ---> 
+                                <img src="{{asset('assets/inquiries.png')}}">
                                 </div>
                                 <div class="box1">
                                     <h1> {{ $totalEnquiries }} </h1>

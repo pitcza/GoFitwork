@@ -32,38 +32,40 @@
     height: 80px;
     width: 85px;
     margin-top: 10px;
-    margin-left: 5px;
+    margin-left: 20px;
 }
 
 .icon-case2 img {
     height: 80px;
     width: 85px;
     margin-top: 10px;
-    margin-left: 5px;
+    margin-left: 20px;
 }
 
 .icon-case3 img {
     height: 80px;
     width: 85px;
     margin-top: 10px;
-    margin-left: 5px;
+    margin-left: 20px;
 }
 
 .cards .card1 .box1 .members {
-    margin-left: 100px;
+    margin-left: 80px;
     font-size: 40px;
+    margin-top: 10px;
 }
 
 .cards .card1 .box1 h1 {
-    margin-left: 90px;
+    margin-left: 70px;
     font-size: 40px;
+    margin-top: 10px;
 }
  
 .cards .card1 .box1 h3 {
-    margin-left: 50px;
-    margin-top: -5px;
+    margin-left: 30px;
+    margin-top: -10px;
     font-size: 17px;
-    font-weight: 500;
+    font-weight: 300;
 }
 
 /*************** TABLE ***********************/ 
