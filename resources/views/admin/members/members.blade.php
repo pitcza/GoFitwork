@@ -11,7 +11,7 @@
 
             {{-- MAIN CONTENT --}}
             <div class="body-content">
-                <div class="container">
+                <div class="content">
                     <div class="header1">
                         <h1>Members</h1>
                     </div>
@@ -22,7 +22,7 @@
                             </div>
                     @endif
 
-                    <div class="content">
+                    <div class="content1">
                         <table class="content-table">
                             <thead>
                             <tr>
@@ -42,7 +42,7 @@
                                     <td>{{ $member->subscription_fee }}</td>
                                     <td>{{ optional($member->created_at)->format('F d, Y') ?? 'N/A' }}</td>
                                     <td>{{ $member->status }}</td>
-                                    <td> <a href="{{ route('admin.member.view', $member->id) }}"> view </a> </td>
+                                    <td><a class="buttons" href="{{ route('admin.member.view', $member->id) }}"><i class='bx bxs-low-vision'></i></a></td>
                                 </tr>
                             @endforeach
                             </tbody>

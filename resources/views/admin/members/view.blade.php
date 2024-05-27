@@ -2,6 +2,8 @@
 <html lang="en">
     {{-- TAB TITLE AND SOURCES --}}
     @include('admin.gofitwork')
+    <link rel="stylesheet" href="{{asset('css/members/view.css')}}">
+
 
     <body>
         <div class="content">
@@ -10,22 +12,25 @@
 
             {{-- MAIN CONTENT --}}
             <div class="body-content">
-                <div class="container">
-                    <h1>Member Details</h1>
+                <div class="header1">
+                    <h1>Member Informations</h1>
+                    <a class="back">Back</a>
+                </div>
+                
                     <div class="card">
+                    <div class="card-header"> Personal Details</div>
                         <div class="card-body">
-                            <h5 class="card-title">Member Information</h5>
-                            <p><strong>First Name:</strong> {{ $member->firstname }}</p>
-                            <p><strong>Last Name:</strong> {{ $member->lastname }}</p>
-                            <p><strong>Email:</strong> {{ $member->email }}</p>
-                            <p><strong>Barangay:</strong> {{ $member->barangay }}</p>
-                            <p><strong>Gender:</strong> {{ $member->gender }}</p>
-                            <p><strong>Occupation:</strong> {{ $member->occupation }}</p>
-                            <p><strong>Reason:</strong> {{ $member->reason ?: 'N/A' }}</p>
-                            <p><strong>Status:</strong> {{ $member->status }}</p>
-                            <p><strong>Subscription Fee:</strong> {{ $member->subscription_fee }}</p>
-                            <p><strong>Start Date:</strong> {{ $member->start_date->format('F j, Y') }}</p>
-                            <p><strong>End Date:</strong> {{ $member->end_date->format('F j, Y') }}</p>
+                            <p>First Name: <span>{{ $member->firstname }}</span></p>
+                            <p>Last Name: <span>{{ $member->lastname }}</span></p>
+                            <p>Email: <span>{{ $member->email }}</span></p>
+                            <p>Barangay: <span>{{ $member->barangay }}</span></p>
+                            <p>Gender: <span>{{ $member->gender }}</span></p>
+                            <p>Occupation: <span>{{ $member->occupation }}</span></p>
+                            <p>Reason: <span>{{ $member->reason ?: 'N/A' }}</span></p>
+                            <p>Status: <span>{{ $member->status }}</span></p>
+                            <p>Subscription Fee: <span>{{ $member->subscription_fee }}</span></p>
+                            <p>Start Date: <span>{{ $member->start_date->format('F j, Y') }}</span></p>
+                            <p>End Date: <span>{{ $member->end_date->format('F j, Y') }}</span></p>
                         </div>
                     </div>
                 </div>

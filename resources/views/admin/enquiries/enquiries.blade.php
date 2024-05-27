@@ -47,15 +47,15 @@
                                         <div class="btn-group" role="group" aria-label="Basic outlined example">
                                             <form action="{{ route('admin.enquiries.approve', $enquiry->id) }}" method="POST" style="display:inline-block;">
                                                 @csrf
-                                                <button type="submit" class="buttons">A</button>
+                                                <button type="submit" class="button"><i class='bx bxs-add-to-queue'></i></button> 
                                             </form>
-                                            <a class="buttons" href="{{ route('admin.enquiry.edit', $enquiry->id) }}">E</a>
+                                            <a class="buttons" href="{{ route('admin.enquiry.edit', $enquiry->id) }}"><i class='bx bxs-edit'></i></a>
                                             <form action="{{ route('admin.enquiries.delete', $enquiry->id) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="buttons">D</button>
+                                                <button type="submit" class="button"><i class='bx bxs-message-square-x'></i></button>
                                             </form>
-                                            <a class="buttons" href="{{ route('admin.enquiries.view', $enquiry->id) }}">V</a>
+                                            <a class="buttons" href="{{ route('admin.enquiries.view', $enquiry->id) }}"><i class='bx bxs-low-vision'></i></a>
                                         </div>
                                     </td>
                                 </tr>

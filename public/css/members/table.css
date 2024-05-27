@@ -1,94 +1,86 @@
-.button-container {
-    margin-bottom: 20px;
-}
-
-.action-btn {
-    background-color: #21565D; /* Button background color */
-    color: #ffffff; /* Button text color */
-    border: none;
-    padding: 10px 20px;
-    margin-right: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 1em;
-}
-
-.action-btn:hover {
-    background-color: #183c40; /* Darker shade for hover */
-}
-
-table, thead, tbody {
-    text-align: center;
+.content {
+    justify-content: center;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .header1 {
     display: flex;
     justify-content: space-between;
+    padding-top: 30px;
 }
 
-.content {
-    justify-content: center;
-    align-items: center;
-}
-
-.container {
-    margin-top: 15px;
-}
-
-.container h1 {
-    font-size: 23px;
+.header1 h1 {
     font-weight: 500;
+    font-family: 'poppins';
     text-transform: uppercase;
+    font-size: 23px;
 }
+
+
+/*************** TABLE ***********************/ 
 
 .content-table {
     border-collapse: collapse;
-    margin: 25px 0;
-    font-size: 1em; /* Increased font size */
-    width: 100%; /* Ensuring it doesn't get too wide */
-    border-radius: 5px 5px 0 0;
+    margin: 15px 0px;
+    font-size: 1em;
+    width: 100%;
+    border-radius: 5px 0;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
 .content-table thead tr {
     background-color: #21565D;
-    color: #ffffff;
+    color: #fff;
+    text-align: left;
     font-weight: bold;
 }
 
-.content-table th,
-.content-table td {
-    padding: 20px 25px; /* Increased padding for bigger cells */
+.content-table th {
+    padding: 15px 25px;
+    font-weight: 500;
+    text-align: left;
 }
 
-.content-table tbody tr {
-    border-bottom: 1px solid #dddddd;
+.content-table td {
+    padding: 15px 25px;
+    text-align: left;
 }
 
 .content-table tbody tr:nth-of-type(even) {
     background-color: #f3f3f3;
 }
 
-/* .content-table tbody tr:last-of-type {
-    border-bottom: 2px solid #21565D;
-}
 
-.content-table tbody tr.active-row {
-    font-weight: bold;
-    color: #21565D;
-} */
-
-.delete-btn {
-    background-color: #c00; /* Red background */
-    color: #fff; /* White text */
+.buttons {
+    align-items: center;
+    background-color: #21565D;
+    text-decoration: none;
     border: none;
-    padding: 10px 15px;
-    cursor: pointer;
+    margin-left: 5px;
+    margin-bottom: 15px;
+    color: white;
     border-radius: 5px;
-    font-size: 1em;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 16px;
+    width: 50px;
+    height: 35px;
+    transition: .3s;
+    transform: translate(0px, 0px);
 }
 
-.delete-btn:hover {
-    background-color: #a00; /* Darker red on hover */
+.buttons a {
+    text-decoration: none;
+    color:#fff;
+}
+
+.buttons i {
+    text-decoration: none;
+    color:#fff;
+    margin-top: 10px;
 }

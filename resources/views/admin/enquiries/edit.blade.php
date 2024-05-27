@@ -2,6 +2,8 @@
 <html lang="en">
     {{-- TAB TITLE AND SOURCES --}}
     @include('admin.gofitwork')
+    <link rel="stylesheet" href="{{asset('css/enquiries/edit.css')}}">
+
 
     <body>
         <div class="content">
@@ -10,13 +12,16 @@
 
             {{-- MAIN CONTENT --}}
             <div class="body-content">
-                <div class="container">
-                    <h1>Edit Enquiry</h1>
+                <div class="content">
+                    <div class="header1">
+                    <h1>Edit Inquiry</h1>
+                </div>
+                <div class="form-content"> 
                     <form action="{{ route('admin.enquiry.update', $enquiry->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         @include('admin.enquiries.form')
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="submit" class="update">Update</button>
                     </form>
                 </div>
             </div>
