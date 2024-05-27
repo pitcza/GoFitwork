@@ -20,17 +20,17 @@
                     <div class="card">
                     <div class="card-header"> Personal Details</div>
                         <div class="card-body">
-                            <p>First Name: <span>{{ $member->firstname }}</span></p>
-                            <p>Last Name: <span>{{ $member->lastname }}</span></p>
-                            <p>Email: <span>{{ $member->email }}</span></p>
-                            <p>Barangay: <span>{{ $member->barangay }}</span></p>
-                            <p>Gender: <span>{{ $member->gender }}</span></p>
-                            <p>Occupation: <span>{{ $member->occupation }}</span></p>
-                            <p>Reason: <span>{{ $member->reason ?: 'N/A' }}</span></p>
-                            <p>Status: <span>{{ $member->status }}</span></p>
-                            <p>Subscription Fee: <span>{{ $member->subscription_fee }}</span></p>
-                            <p>Start Date: <span>{{ $member->start_date->format('F j, Y') }}</span></p>
-                            <p>End Date: <span>{{ $member->end_date->format('F j, Y') }}</span></p>
+                            <p>First Name: <span>{{ $subscription->firstname }}</span></p>
+                            <p>Last Name: <span>{{ $subscription->lastname }}</span></p>
+                            <p>Email: <span>{{ $subscription->email }}</span></p>
+                            <p>Barangay: <span>{{ $subscription->barangay }}</span></p>
+                            <p>Gender: <span>{{ $subscription->gender }}</span></p>
+                            <p>Occupation: <span>{{ $subscription->occupation }}</span></p>
+                            <p>Reason: <span>{{ $subscription->reason ?: 'N/A' }}</span></p>
+                            <p>Status: <span>{{ $subscription->status }}</span></p>
+                            <p>Subscription Fee: <span>{{ $subscription->subscription_fee }}</span></p>
+                            <p>Start Date: <span>{{ $subscription->start_date->format('F j, Y') }}</span></p>
+                            <p>End Date: <span>{{ $subscription->end_date->format('F j, Y') }}</span></p>
                         </div>
                     </div>
                 </div>

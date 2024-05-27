@@ -39,7 +39,7 @@ class SubscriptionController extends Controller
         $subscription = Subscription::findOrFail($subscriptionId);
 
         // check if the member already has a subscription
-        if (Member::where('subscription_id', $subscriptionId)->exists()) {
+        if ($subscription && $subscription->payment_status === 'Paid') {
             return redirect()->route('admin.subscriptions')->with('error', 'This member already has a subscription.');
         }
 
@@ -63,31 +63,30 @@ class SubscriptionController extends Controller
         // create end date by adding duration months to start date
         $endDate = $startDate->copy()->addMonths($durationMonths);
 
-        // create a new member and copy personal data
-        $member = new Member();
-        $member->firstname = $subscription->firstname;
-        $member->lastname = $subscription->lastname;
-        $member->email = $subscription->email;
-        $member->barangay = $subscription->barangay;
-        $member->gender = $subscription->gender;
-        $member->occupation = $subscription->occupation;
-        $member->reason = $subscription->reason;
-        // copy subscription data
-        $member->subscription_fee = $subscriptionFee;
-        $member->payment_status = 'Paid'; // default status kapag inadd
-        $member->start_date = $startDate;
-        $member->end_date = $endDate;
-        $member->subscription_id = $subscription->id;
-        $member->status = 'Ongoing'; // default status kapag inadd
-        $member->save();
+        $status = 'Ongoing'; // Default status
+
+        // current date is before the start date
+        if (Carbon::now()->lt($startDate)) {
+            $status = 'Scheduled';
+        } 
+        elseif (Carbon::now()->lt($endDate)) { // current date is before the end date
+            if (Carbon::now()->diffInDays($endDate) <= 7) {
+                $status = 'Ending';
+            } 
+            else {
+                $status = 'Ongoing';
+            }
+        } 
+        elseif (Carbon::now()->gt($endDate)) { // current date is after the end date
+            $status = 'Ended';
+        }
 
         // update the subscription record
         $subscription->subscription_fee = $subscriptionFee;
         $subscription->payment_status = 'Paid';
         $subscription->start_date = $startDate;
         $subscription->end_date = $endDate;
-        $subscription->status = 'Ongoing';
-        $subscription->member_id = $member->id;
+        $subscription->status = $status;
         $subscription->save();
 
         return redirect()->route('admin.members')->with('success', 'Subscription added successfully.');
@@ -101,8 +100,6 @@ class SubscriptionController extends Controller
 
     // update subscription process
     public function updateSubscription(Request $request, $id) {
-        \Log::info('Request data: ', $request->all());
-
         $validatedData = $request->validate([
             'firstname' => 'required|string|max:155',
             'lastname' => 'required|string|max:155',
@@ -114,25 +111,9 @@ class SubscriptionController extends Controller
         ]);
 
         $subscription = Subscription::findOrFail($id);
-
-        \Log::info('Subscription data before update: ', $subscription->toArray());
         
         // update the subscription details
         $subscription->update([
-            'firstname' => $validatedData['firstname'],
-            'lastname' => $validatedData['lastname'],
-            'email' => $validatedData['email'],
-            'barangay' => $validatedData['barangay'],
-            'gender' => $validatedData['gender'],
-            'occupation' => $validatedData['occupation'],
-            'reason' => $validatedData['reason'],
-        ]);
-
-        \Log::info('Subscription data after update: ', $subscription->toArray());
-
-        // update corresponding member details
-        $member = Member::where('subscription_id', $subscription->id)->firstOrFail();
-        $member->update([
             'firstname' => $validatedData['firstname'],
             'lastname' => $validatedData['lastname'],
             'email' => $validatedData['email'],
@@ -151,5 +132,61 @@ class SubscriptionController extends Controller
         $subscription->delete();
         return redirect()->route('admin.subscriptions')->with('success', 'Subscription deleted successfully.');
     }
+
+    // show ending and ended members subscription sa expiring table
+    public function showEndingAndEndedSubs() {
+        $subscriptions = Subscription::whereIn('status', ['Ending', 'Ended'])->get();
+        return view('admin.subscriptions.expiring', compact('subscriptions'));
+    }
+
+    // renew form
+    public function renewSubsForm($id) {
+        $subscription = Subscription::findOrFail($id);
+        return view('admin.subscriptions.renewsubs', compact('subscription'));
+    }
+
+    // renew ending and ended members subscription
+    public function renewSubscriptions(Request $request, $id) {
+        $subscription = Subscription::findOrFail($id);
+
+        $validatedData = $request->validate([
+            'renewalPeriod' => 'required|integer|min:1',
+        ]);
+
+        // Calculate renewal period
+        $renewalPeriod = intval($validatedData['renewalPeriod']);
+
+        // Calculate new end date
+        $newEndDate = $subscription->end_date->copy()->addMonths($renewalPeriod);
+
+        // Copy old end date as updated start date
+        $newStartDate = $subscription->end_date->copy();
+
+        // Update subscription
+        $subscription->start_date = $newStartDate;
+        $subscription->end_date = $newEndDate;
+        $subscription->save();
+
+        // Update subscription status
+        $this->updateSubscriptionStatus($subscription);
+
+        return redirect()->route('admin.subscriptions.expiring')->with('success', 'Subscription renewed successfully.');   
+    }
+
+    private function updateSubscriptionStatus($subscription)
+{
+    $currentDate = Carbon::now();
+    $endDate = Carbon::parse($subscription->end_date);
+
+    if ($currentDate->gt($endDate)) {
+        $subscription->status = 'Ended';
+    } elseif ($currentDate->diffInDays($endDate) <= 7) {
+        $subscription->status = 'Ending';
+    } else {
+        $subscription->status = 'Ongoing';
+    }
+
+    $subscription->save();
+}
     
 }

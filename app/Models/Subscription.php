@@ -13,21 +13,15 @@ class Subscription extends Model
 
     protected $fillable = [
         'firstname', 'lastname', 'email', 'barangay', 'gender', 'occupation', 'reason',
-        'subscription_fee', 'payment_status', 'start_date', 'end_date'
+        'subscription_fee', 'payment_status', 'start_date', 'end_date', 'status',
     ];
 
     protected $dates = [
         'start_date', 'end_date'
     ];
 
-    // date fields converted to carbon instances
     protected $casts = [
         'start_date' => 'date',
         'end_date' => 'date',
     ];
-
-    public function member()
-    {
-        return $this->belongsTo(Member::class, 'member_id');
-    }
 }

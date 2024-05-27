@@ -19,11 +19,11 @@ class AdminDashboardController extends Controller
         
         // fetch total counts
         $totalEnquiries = Enquiry::count();
-        $totalMembers = Member::distinct('subscription_id')->count('subscription_id');
+        $totalMembers = Subscription::where('payment_status', 'Paid')->count();
         $totalSubscriptions = Subscription::count();
 
         // fetch the count of members grouped by year and month
-        $monthlyMemberCounts = Member::select(
+        $monthlyMemberCounts = Subscription::select(
             DB::raw('YEAR(created_at) as year'),
             DB::raw('MONTH(created_at) as month'),
             DB::raw('COUNT(*) as member_count')
@@ -33,8 +33,8 @@ class AdminDashboardController extends Controller
         ->orderBy('month', 'asc')
         ->get();
 
-        $members = Member::all();
+        $subscriptions = Subscription::whereIn('payment_status', ['Paid'])->get();
 
-        return view('admin.dashboard', compact('totalEnquiries', 'totalMembers', 'totalSubscriptions', 'monthlyMemberCounts', 'members'));
+        return view('admin.dashboard', compact('totalEnquiries', 'totalMembers', 'totalSubscriptions', 'monthlyMemberCounts', 'subscriptions'));
     }
 }

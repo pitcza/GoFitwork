@@ -30,7 +30,7 @@ return new class extends Migration
             $table->enum('payment_status', ['Pending', 'Paid'])->default('Pending');
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
-            $table->enum('status', ['Ongoing', 'Ending', 'Ended'])->nullable();
+            $table->enum('status', ['Scheduled', 'Ongoing', 'Ending', 'Ended'])->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

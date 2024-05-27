@@ -8,6 +8,9 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\Validation\Rule;
 
+use App\Models\Member;
+use App\Observers\Status;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**

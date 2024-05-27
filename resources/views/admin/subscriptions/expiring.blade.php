@@ -11,7 +11,7 @@
 
             {{-- MAIN CONTENT --}}
             <div class="body-content">
-                <div class="content">
+                <div class="container">
                     <div class="header1">
                         <h1>Members</h1>
                     </div>
@@ -22,14 +22,14 @@
                             </div>
                     @endif
 
-                    <div class="content1">
+                    <div class="content">
                         <table class="content-table">
                             <thead>
                             <tr>
                                 <th> ID </th>
                                 <th> Name </th>
-                                <th> Amount </th>
-                                <th> Member Since </th>
+                                <th> Start Date </th>
+                                <th> End Date </th>
                                 <th> Status </th>
                                 <th> Action </th>
                             </tr>
@@ -37,12 +37,14 @@
                             <tbody>
                             @foreach($subscriptions as $subscription)
                                 <tr>
-                                <td>{{ $subscription->id }}</td>
+                                    <td>{{ $subscription->id }}</td>
                                     <td>{{ $subscription->firstname }} {{ $subscription->lastname }}</td>
-                                    <td>{{ $subscription->subscription_fee }}</td>
-                                    <td>{{ optional($subscription->created_at)->format('F d, Y') ?? 'N/A' }}</td>
+                                    <td>{{ $subscription->start_date->format('F j, Y') }}</td>
+                                    <td>{{ $subscription->end_date->format('F j, Y') }}</td>
                                     <td>{{ $subscription->status }}</td>
-                                    <td> <a href="{{ route('admin.member.view', $subscription->id) }}"><i class='bx bxs-low-vision'></i></a> </td>
+                                    <td> 
+                                        <a href="{{ route('admin.subscription.renewsubs', $subscription->id) }}" class="btn btn-primary">Renew</a>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
