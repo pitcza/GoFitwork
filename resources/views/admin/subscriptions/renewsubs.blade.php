@@ -2,6 +2,8 @@
 <html lang="en">
     {{-- TAB TITLE AND SOURCES --}}
     @include('admin.gofitwork')
+    <link rel="stylesheet" href="{{asset('css/subs/renew.css')}}">
+
 
     <body>
         <div class="content">
@@ -10,15 +12,18 @@
 
             {{-- MAIN CONTENT --}}
             <div class="body-content">
-                <div class="container mt-5">
-                    <h2>Renew Subscription</h2>
+                <div class="content">
+                    <div class="header1">
+                    <h1>Renew Subscription</h1>
+                    <a class="back" href="{{ route('admin.members') }}">Back</a>
+                </div>
                     <div class="card">
+                    <div class="card-header">Subscription Details</div>
                         <div class="card-body">
-                            <h5 class="card-title">Subscription Details</h5>
-                            <p class="card-text"><strong>Name:</strong> {{ $subscription->fisrtname }} {{ $subscription->lastname }}</p>
-                            <p class="card-text"><strong>Status:</strong> {{ $subscription->status }}</p>
-                            <p class="card-text"><strong>Start Date:</strong> {{ $subscription->start_date->format('Y-m-d') }}</p>
-                            <p class="card-text"><strong>End Date:</strong> {{ $subscription->end_date->format('Y-m-d') }}</p>
+                            <p>Name: <span>{{ $subscription->fisrtname }} {{ $subscription->lastname }}</span></p>
+                            <p>Status: <span>{{ $subscription->status }}</span></p>
+                            <p>Start Date: <span>{{ $subscription->start_date->format('Y-m-d') }}</span></p>
+                            <p>End Date: <span>{{ $subscription->end_date->format('Y-m-d') }}</span></p>
                             <form action="{{ route('admin.subscription.renew', $subscription->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
@@ -26,7 +31,7 @@
                                     <label for="renewalPeriod">Renewal Period (months):</label>
                                     <input type="number" class="form-control" id="renewalPeriod" name="renewalPeriod" min="1" value="1" required>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Renew Subscription</button>
+                                <button type="submit" class="button">Renew</button>
                             </form>
                         </div>
                     </div>

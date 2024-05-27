@@ -32,7 +32,7 @@
                                 <th> Start Date </th>
                                 <th> End Date </th>
                                 <th> Status </th>
-                                <th> Action </th>
+                                <th class= "action"> Action </th>
                             </tr>
                             </thead>
                             <tbody>
@@ -44,7 +44,7 @@
                                     <td>{{ $subscription->end_date->format('F j, Y') }}</td>
                                     <td>{{ $subscription->status }}</td>
                                     <td> 
-                                        <a href="{{ route('admin.subscription.renewsubs', $subscription->id) }}" class="btn btn-primary">Renew</a>
+                                        <a href="{{ route('admin.subscription.renewsubs', $subscription->id) }}" class="buttons">Renew</a>
                                     </td>
                                 </tr>
                             @endforeach
