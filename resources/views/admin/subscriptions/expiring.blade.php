@@ -2,7 +2,7 @@
 <html lang="en">
     {{-- TAB TITLE AND SOURCES --}}
     @include('admin.gofitwork')
-    <link rel="stylesheet" href="{{asset('css/members/table.css')}}">
+    <link rel="stylesheet" href="{{asset('css/subs/expiring.css')}}">
 
     <body>
         <div class="content">
@@ -12,8 +12,9 @@
             {{-- MAIN CONTENT --}}
             <div class="body-content">
                 <div class="container">
-                    <div class="header1">
-                        <h1>Members</h1>
+                <div class="header1">
+                        <h1> Expiring Subscription </h1>
+                        <a class="expiring" href="{{ route('admin.subscriptions.expiring') }}"> All </a>
                     </div>
 
                     @if ($message = Session::get('success'))
@@ -28,8 +29,8 @@
                             <tr>
                                 <th> ID </th>
                                 <th> Name </th>
-                                <th> Start Date </th>
-                                <th> End Date </th>
+                                <th> Email </th>
+                                <th> Member Since </th>
                                 <th> Status </th>
                                 <th> Action </th>
                             </tr>

@@ -42,7 +42,7 @@
                                     <td>{{ $subscription->subscription_fee }}</td>
                                     <td>{{ optional($subscription->created_at)->format('F d, Y') ?? 'N/A' }}</td>
                                     <td>{{ $subscription->status }}</td>
-                                    <td> <a href="{{ route('admin.member.view', $subscription->id) }}"><i class='bx bxs-low-vision'></i></a> </td>
+                                    <td> <a class="buttons" href="{{ route('admin.member.view', $subscription->id) }}"><i class='bx bxs-low-vision'></i></a> </td>
                                 </tr>
                             @endforeach
                             </tbody>

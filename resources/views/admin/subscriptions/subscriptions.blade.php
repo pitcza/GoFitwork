@@ -13,7 +13,7 @@
             <div class="body-content">
                 <div class="content">
                     <div class="header1">
-                        <h1> subscription </h1>
+                        <h1> All Subscriptions </h1>
                         <a class="expiring" href="{{ route('admin.subscriptions.expiring') }}"> Expiring </a>
                     </div>
 
@@ -47,14 +47,14 @@
                                     <td>{{ $subscription->payment_status }}</td>
                                     <td>
                                         <div class="form-group">
-                                        <button class="button"><a href="{{ route('admin.subscription.create', $subscription->id) }}"><i class='bx bxs-add-to-queue'></i></a></button>
-                                        <a class="button" href="{{ route('admin.subscription.edit', $subscription->id) }}">E</a>
+                                        <button class="buttons"><a href="{{ route('admin.subscription.create', $subscription->id) }}"><i class='bx bxs-add-to-queue'></i></a></button>
+                                        <button class="buttons"><a href="{{ route('admin.subscription.edit', $subscription->id) }}"><i class='bx bxs-edit'></i></a></button>
                                         <form action="{{ route('admin.subscriptions.delete', $subscription->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button class="buttons"><i class='bx bxs-message-square-x'></i></button>
                                         </form>
-                                        <button type="button" class="button"> <a href=""><i class='bx bxs-low-vision'></i></a> </button>
+                                        <button type="button" class="buttons"> <a href=""><i class='bx bxs-low-vision'></i></a> </button>
                                         <!-- Add more actions as needed -->
                                         </div>
                                     </td>
